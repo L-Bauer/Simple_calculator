@@ -2,6 +2,7 @@ package com.example.simplecalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -24,5 +25,26 @@ public class MainActivity extends AppCompatActivity {
         final Button equals = findViewById(R.id.equals);
         final TextView result = findViewById(R.id.result);
 
+        equals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final int firstNumberValue = Integer.parseInt(firstNumber.getText().toString());
+                final int secondNumberValue = Integer.parseInt(secondNumber.getText().toString());
+
+                final int operatorButtonId = operators.getCheckedRadioButtonId();
+
+                Integer answer;
+
+                if(operatorButtonId == add.getId()){
+                    //addition
+                    answer = firstNumberValue + secondNumberValue;
+                }
+                else{
+                    //Subtraction
+                    answer = firstNumberValue - secondNumberValue;
+                }
+                result.setText(answer.toString());
+            }
+        });
     }
 }
